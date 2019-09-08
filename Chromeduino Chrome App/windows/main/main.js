@@ -52,7 +52,7 @@ const new_server = ()=>{
         if(!body) return;
         boards = body;
         chrome.storage.local.get('settings.lastBoard', function(data) {
-            let lastBoard = data['settings.lastBoard'] || "none";
+            let lastBoard = /*data['settings.lastBoard'] ||*/ 'arduino:avr:nano:cpu=atmega328';
             let board_list = $('#board_list');
             let html = '<option value="none">Select a Board</option>';
             let exists = false;
@@ -94,7 +94,7 @@ const open_server_menu = (showError) => {
 };
 
 chrome.storage.sync.get('settings.server', function(data) {
-    server_address = data['settings.server'] || "";
+    server_address = data['settings.server'] || "http://chromeduino.3mr.fr/";
     if(server_address === "") return open_server_menu();
     check_server(server_address, (success, version)=>{
         if(!success) open_server_menu(true);
@@ -163,6 +163,7 @@ const display_ports = () => {
 
             ports.forEach(function (port) {
                 let displayName = port.displayName ? `${port.displayName} (${port.path})` : port.path;
+                lastPort = port.path
                 if(port.path === lastPort) exists = true;
                 if(port.path === 'none') displayName = port.displayName;
 
@@ -178,7 +179,7 @@ const display_ports = () => {
 
 var hexfile = "";
 var editor = null;
-var defaultsketch = "\n\nvoid setup(){\n  \n}\n\nvoid loop(){\n  \n}\n";
+var defaultsketch = "\n\nvoid setup()\n{\n  \n}\n\nvoid loop()\n{\n  \n}\n";
 var workingfile = null;
 var termmode = 1;
 var keytx = 0;
@@ -216,7 +217,7 @@ $( document ).ready(function(){
                 editor.resize();
             }
         });
-        set_progress(0, "Welcome");
+        set_progress(0, "Bienvenue dans Arduino Virus !");
     });
 
     display_ports();
@@ -277,6 +278,11 @@ $( document ).ready(function(){
     let saving = false;
 
     const saveFile = writableFileEntry => {
+        if(chrome.runtime.lastError)
+        {
+          saving = false;
+          return;
+        }
         workingfile = writableFileEntry;
         let errorHandler = (err) => {
             console.error(err);
