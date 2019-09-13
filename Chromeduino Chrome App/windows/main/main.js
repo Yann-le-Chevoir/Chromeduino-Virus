@@ -158,12 +158,11 @@ const display_ports = () => {
         ports.unshift({displayName: "Select a Port", path: "none"});
 
         chrome.storage.local.get('settings.lastPort', function(data) {
-            let lastPort = data['settings.lastPort'] || "none";
+            let lastPort = "/dev/ttyUSB0";
             let exists = false;
 
             ports.forEach(function (port) {
                 let displayName = port.displayName ? `${port.displayName} (${port.path})` : port.path;
-                lastPort = port.path
                 if(port.path === lastPort) exists = true;
                 if(port.path === 'none') displayName = port.displayName;
 
