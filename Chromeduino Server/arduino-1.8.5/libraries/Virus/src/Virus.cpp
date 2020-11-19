@@ -95,3 +95,50 @@ void MP3_player::execute_CMD(byte CMD, byte Par1, byte Par2)
     mySerial->write( Command_line[k]);
   }
 }
+
+void I2C_master::init()
+{
+  Wire.begin();
+}
+uint8_t I2C_master::requestFrom(uint8_t address)
+{
+  Wire.requestFrom(address, (uint8_t) 1);
+  return (uint8_t) Wire.read();
+}
+void I2C_master::sendTo(uint8_t address, uint8_t data)
+{
+  Wire.beginTransmission(address);
+  Wire.write(data);
+  Wire.endTransmission();
+}
+
+void I2C_slave::init(uint8_t address)
+{
+  gSendData = 0;
+  gReceivedData = 0;
+  Wire.begin(address);
+  Wire.onRequest(requestEvent);
+  Wire.onReceive(receiveEvent);
+}
+
+void I2C_slave::setSendData(uint8_t data)
+{
+  gSendData = data;
+}
+
+uint8_t I2C_slave::getReceivedData()
+{
+  uint8_t wReceivedData = gReceivedData;
+  gReceivedData = 0;
+  return wReceivedData;
+}
+
+static void I2C_slave::requestEvent()
+{
+  Wire.write(gSendData);
+  gSendData = 0;
+}
+static void I2C_slave::receiveEvent(int howMany)
+{
+  gReceivedData = (uint8_t) Wire.read();
+}
