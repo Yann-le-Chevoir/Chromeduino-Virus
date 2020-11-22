@@ -128,15 +128,12 @@ void I2C_slave::setSendData(uint8_t data)
 
 uint8_t I2C_slave::getReceivedData()
 {
-  uint8_t wReceivedData = gReceivedData;
-  gReceivedData = 0;
-  return wReceivedData;
+  return gReceivedData;
 }
 
 static void I2C_slave::requestEvent()
 {
   Wire.write(gSendData);
-  gSendData = 0;
 }
 static void I2C_slave::receiveEvent(int howMany)
 {
