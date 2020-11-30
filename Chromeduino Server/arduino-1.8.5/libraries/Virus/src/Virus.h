@@ -49,4 +49,11 @@ private:
   static void receiveEvent(int howMany);
 };
 
+class EV3_master
+{
+public:
+  void init();
+  void setMotorSpeed(uint8_t motor, uint8_t speed);
+};
+
 #endif
