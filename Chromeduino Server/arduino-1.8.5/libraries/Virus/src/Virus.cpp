@@ -60,6 +60,13 @@ void MP3_player::playPrevious()
   _isPlaying = true;
 }
 
+void MP3_player::playTrack(uint8_t track)
+{
+  execute_CMD(0x03,0,track);
+  delay(500);
+  _isPlaying = true;
+}
+
 void MP3_player::volumeINC()
 {
   volume = volume+1;

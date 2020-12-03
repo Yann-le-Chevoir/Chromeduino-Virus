@@ -15,6 +15,7 @@ public:
   void play();
   void playNext();
   void playPrevious();
+  void playTrack(uint8_t track);
   void volumeINC();
   void volumeDEC();
   
