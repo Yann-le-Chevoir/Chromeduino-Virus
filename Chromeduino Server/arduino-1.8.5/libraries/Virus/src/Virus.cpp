@@ -121,6 +121,7 @@ void I2C_master::sendTo(uint8_t address, uint8_t data)
 
 void I2C_slave::init(uint8_t address)
 {
+  Serial.begin(9600);
   gSendData = 0;
   gReceivedData = 0;
   Wire.begin(address);
@@ -131,10 +132,12 @@ void I2C_slave::init(uint8_t address)
 void I2C_slave::setSendData(uint8_t data)
 {
   gSendData = data;
+  Serial.println(gSendData);
 }
 
 uint8_t I2C_slave::getReceivedData()
 {
+  Serial.println(gReceivedData);
   return gReceivedData;
 }
 
