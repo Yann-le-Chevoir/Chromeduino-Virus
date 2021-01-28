@@ -1,3 +1,5 @@
+#ifndef __AVR_ATtiny85__
+
 #include "Virus.h"
 
 void I2C_master::init()
@@ -17,3 +19,5 @@ void I2C_master::sendTo(uint8_t address, uint8_t data)
   Wire.write(data);
   Wire.endTransmission();
 }
+
+#endif

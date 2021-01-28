@@ -1,3 +1,5 @@
+#ifndef __AVR_ATtiny85__
+
 #include "Virus.h"
 
 void I2C_slave::init(uint8_t address)
@@ -30,3 +32,5 @@ static void I2C_slave::receiveEvent(int howMany)
 {
   gReceivedData = (uint8_t) Wire.read();
 }
+
+#endif

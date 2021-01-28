@@ -1,3 +1,5 @@
+#ifndef __AVR_ATtiny85__
+
 #include "Virus.h"
 
 # define Start_Byte 0x7E
@@ -102,3 +104,5 @@ void MP3_player::execute_CMD(byte CMD, byte Par1, byte Par2)
     mySerial->write( Command_line[k]);
   }
 }
+
+#endif

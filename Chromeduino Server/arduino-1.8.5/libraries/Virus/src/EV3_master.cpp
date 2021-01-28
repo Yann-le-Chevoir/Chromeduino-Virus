@@ -1,3 +1,5 @@
+#ifndef __AVR_ATtiny85__
+
 #include "Virus.h"
 
 void EV3_master::init()
@@ -10,3 +12,5 @@ void EV3_master::setMotorSpeed(uint8_t motor, uint8_t speed)
   uint8_t wBuffer[] = {motor, speed};
   Serial.write(wBuffer, sizeof(wBuffer));
 }
+
+#endif
