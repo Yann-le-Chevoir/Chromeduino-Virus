@@ -9,20 +9,20 @@ void setup()
 
 void loop()
 {
-  if(attiny85.ButtonPushed())
+  if(attiny85.isButtonPushed())
   {
     //if(!buttonValue) buttonValue = 1;
-    attiny85.SetColour(0, 0);
-    attiny85.SetColour(1, 0);
-    attiny85.SetColour(2, 0);
+    attiny85.setColour(0, 255);
+    attiny85.setColour(1, 255);
+    attiny85.setColour(2, 255);
     delay(100);
   }
   else
   {
     //if(buttonValue) buttonValue = 0;    
-    attiny85.SetColour(0, 255);
-    attiny85.SetColour(1, 255);
-    attiny85.SetColour(2, 255);
+    attiny85.setColour(0, 0);
+    attiny85.setColour(1, 0);
+    attiny85.setColour(2, 0);
     delay(100);
   }
 }

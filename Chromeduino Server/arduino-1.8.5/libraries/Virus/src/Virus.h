@@ -7,10 +7,11 @@
 
   class ATtiny85
   {
-  public:
-    void init();
-    void SetColour(int colour, int intensity);
-    boolean ButtonPushed();
+    public:
+      void init();
+      boolean isButtonPushed();
+      void setColour(int colour, int intensity);
+      void setOutput(int output, int intensity);
   };
 
 #else //__AVR_ATtiny85__

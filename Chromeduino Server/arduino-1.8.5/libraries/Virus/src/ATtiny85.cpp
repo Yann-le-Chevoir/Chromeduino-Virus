@@ -23,6 +23,10 @@ void ATtiny85::init()
   GTCCR = 1<<PWM1B | 3<<COM1B0;
   // Interrupts on OC1A match and overflow
   TIMSK = TIMSK | 1<<OCIE1A | 1<<TOIE1;
+
+  setOutput(0, 0);
+  setOutput(1, 0);
+  setOutput(2, 0);
 }
 
 ISR(TIMER1_COMPA_vect)
@@ -35,12 +39,17 @@ ISR(TIMER1_OVF_vect)
   bitClear(PORTB, 3);
 }
 
-void ATtiny85::SetColour(int colour, int intensity)
+void ATtiny85::setColour(int colour, int intensity)
 {
-  *Port[colour] = intensity;
+  *Port[colour] = 255-intensity;
 }
 
-boolean ATtiny85::ButtonPushed()
+void ATtiny85::setOutput(int output, int intensity)
+{
+  *Port[output] = 255-intensity;
+}
+
+boolean ATtiny85::isButtonPushed()
 {
   return analogRead(0) < LIMIT_SWITCH;
 }
