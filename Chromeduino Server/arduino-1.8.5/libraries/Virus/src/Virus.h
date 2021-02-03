@@ -1,20 +1,17 @@
-#ifndef VIRUS_H
-#define VIRUS_H
+#pragma once
 
 #include <Arduino.h>
 
-#ifdef __AVR_ATtiny85__
+class ATtiny85
+{
+  public:
+    void init();
+    boolean isButtonPushed();
+    void setColour(int colour, int intensity);
+    void setOutput(int output, int intensity);
+};
 
-  class ATtiny85
-  {
-    public:
-      void init();
-      boolean isButtonPushed();
-      void setColour(int colour, int intensity);
-      void setOutput(int output, int intensity);
-  };
-
-#else //__AVR_ATtiny85__
+#ifndef __AVR_ATtiny85__
 
   #include <SoftwareSerial.h>
   #include <Wire.h>
@@ -72,5 +69,3 @@
   };
 
 #endif //__AVR_ATtiny85__
-
-#endif //VIRUS_H
