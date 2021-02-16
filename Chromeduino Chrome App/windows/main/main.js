@@ -94,7 +94,7 @@ const open_server_menu = (showError) => {
 };
 
 chrome.storage.sync.get('settings.server', function(data) {
-    server_address = data['settings.server'] || "http://chromeduino.3mr.fr/";
+    server_address = data['settings.server'] || "http://asia.3mr.fr:3000";
     if(server_address === "") return open_server_menu();
     check_server(server_address, (success, version)=>{
         if(!success) open_server_menu(true);
