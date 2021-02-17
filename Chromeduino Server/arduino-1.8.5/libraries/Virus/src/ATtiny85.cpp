@@ -3,7 +3,7 @@
 //#include <TinyWire.h>
 #endif
 
-#define LIMIT_SWITCH 700
+#define LIMIT_SWITCH 900
 
 #ifdef __AVR_ATtiny85__
 #define OUTPUT_0 1

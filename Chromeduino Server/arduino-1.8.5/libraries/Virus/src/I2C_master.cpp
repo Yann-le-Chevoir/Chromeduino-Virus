@@ -1,6 +1,7 @@
 #ifndef __AVR_ATtiny85__
 
 #include "Virus.h"
+#include <Wire.h>
 
 void I2C_master::init()
 {
