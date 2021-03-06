@@ -10,7 +10,7 @@
 
 void MP3_player::init(uint8_t rxPin, uint8_t txPin)
 {
-  volume = 15;
+  volume = 30;
   _isPlaying = false;  
   
   mySerial = new SoftwareSerial(rxPin, txPin);
