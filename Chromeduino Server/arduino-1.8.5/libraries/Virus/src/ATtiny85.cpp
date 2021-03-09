@@ -7,10 +7,10 @@
 
 #ifdef __AVR_ATtiny85__
 #define OUTPUT_0 1
-#define OUTPUT_1 4
-#define OUTPUT_2 3
+#define OUTPUT_1 3
+#define OUTPUT_2 4
 #define INPUT_0 0
-volatile uint8_t* Port[] = {&OCR1B, &OCR1A, &OCR0B};
+volatile uint8_t* Port[] = {&OCR1B, &OCR0B, &OCR1A};
 #else
 #define OUTPUT_0 9
 #define OUTPUT_1 10
