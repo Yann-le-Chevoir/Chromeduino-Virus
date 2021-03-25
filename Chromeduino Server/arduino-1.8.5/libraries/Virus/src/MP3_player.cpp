@@ -10,7 +10,7 @@
 
 void MP3_player::init(uint8_t rxPin, uint8_t txPin)
 {
-  volume = 30;
+  //volume = 30;
   _isPlaying = false;  
   
   mySerial = new SoftwareSerial(rxPin, txPin);
@@ -18,8 +18,9 @@ void MP3_player::init(uint8_t rxPin, uint8_t txPin)
   delay(1000);
   execute_CMD(0x3F, 0, 0);
   delay(500);
-  execute_CMD(0x06, 0, volume);
-  delay(500);
+  //execute_CMD(0x06, 0, volume);
+  //delay(500);
+  volumeSET(30);
 }
 
 boolean MP3_player::isPlaying()
@@ -43,50 +44,65 @@ void MP3_player::play()
 
 void MP3_player::playFirst()
 {
-  execute_CMD(0x11,0,1);
-  delay(500);
-  _isPlaying = true;
+  //execute_CMD(0x11,0,1);
+  //delay(500);
+  //_isPlaying = true;
+  playTrack(1);
 }
 
 void MP3_player::playNext()
 {
-  execute_CMD(0x01,0,1);
+  execute_CMD(0x01, 0, 0);
   delay(500);
   _isPlaying = true;
 }
 
 void MP3_player::playPrevious()
 {
-  execute_CMD(0x02,0,1);
+  execute_CMD(0x02, 0, 0);
   delay(500);
   _isPlaying = true;
 }
 
 void MP3_player::playTrack(uint8_t track)
 {
-  execute_CMD(0x03,0,track);
+  execute_CMD(0x03, 0, track);
   delay(500);
   _isPlaying = true;
 }
 
 void MP3_player::volumeINC()
 {
-  volume = volume+1;
-  if(volume==31)
-  {
-    volume=30;
-  }
-  execute_CMD(0x06, 0, volume);
+  //volume = volume+1;
+  //if(volume==31)
+  //{
+  //  volume=30;
+  //}
+  //execute_CMD(0x06, 0, volume);
+  execute_CMD(0x04, 0, 0);
   delay(500);
 }
 
 void MP3_player::volumeDEC()
 {
-  volume = volume-1;
-  if(volume==-1)
-  {
-    volume=0;
-  }
+  //volume = volume-1;
+  //if(volume==-1)
+  //{
+  //  volume=0;
+  //}
+  //execute_CMD(0x06, 0, volume);
+  execute_CMD(0x05, 0, 0);
+  delay(500);
+}
+
+void MP3_player::volumeSET(uint8_t volume)
+{
+  //volume = volume-1;
+  //if(volume==-1)
+  //{
+  //  volume=0;
+  //}
+  //execute_CMD(0x06, 0, volume);
   execute_CMD(0x06, 0, volume);
   delay(500);
 }

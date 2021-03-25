@@ -42,9 +42,10 @@ class I2C_slave
       void playTrack(uint8_t track);
       void volumeINC();
       void volumeDEC();
+      void volumeSET(uint8_t volume);
       
     private:
-      int volume;  
+      //int volume;  
       SoftwareSerial *mySerial;
       boolean _isPlaying;
       void execute_CMD(byte CMD, byte Par1, byte Par2);
