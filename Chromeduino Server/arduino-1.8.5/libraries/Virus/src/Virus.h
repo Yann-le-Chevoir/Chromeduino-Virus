@@ -67,4 +67,11 @@ class I2C_slave
       void setMotorSpeed(uint8_t motor, uint8_t speed);
   };
 
+  class Ultrason_capteur
+  {
+    public:
+      void init(uint8_t echoPin, uint8_t triggerPin);
+      float getDistance();
+  };
+
 #endif //__AVR_ATtiny85__
