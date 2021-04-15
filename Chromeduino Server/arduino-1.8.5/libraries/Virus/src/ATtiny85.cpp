@@ -81,5 +81,5 @@ void ATtiny85::setOutput(int output, int intensity)
 
 boolean ATtiny85::isButtonPushed()
 {
-  return analogRead(INPUT_0) < LIMIT_SWITCH;
+  return analogRead(INPUT_0) > LIMIT_SWITCH;
 }
